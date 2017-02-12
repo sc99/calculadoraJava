@@ -8,7 +8,8 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
+import java.lang.Math;
+
 import javax.swing.JButton;
 
 import javax.swing.JFrame;
@@ -53,7 +54,8 @@ public class Calculadora extends JFrame {
 	 */
 	public Calculadora() {
 		super();
-		setSize(250, 300);
+                //Se modificaron las medidas para incluir más botones.
+		setSize(500, 600);
 		setTitle("Calculadora Simple");
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -91,6 +93,12 @@ public class Calculadora extends JFrame {
 		nuevoBotonOperacion("*");
 		nuevoBotonOperacion("/");
 		nuevoBotonOperacion("=");
+                //Se agregan botones de las 5 nuevas operaciones
+                nuevoBotonOperacion("sen");
+                nuevoBotonOperacion("tan");
+                nuevoBotonOperacion("cos");
+                nuevoBotonOperacion("^2");
+                nuevoBotonOperacion("Raíz cuad");
 		nuevoBotonOperacion("CE");
 
 		panel.add("East", panelOperaciones);
@@ -192,7 +200,29 @@ public class Calculadora extends JFrame {
 			resultado /= new Double(pantalla.getText());
 		} else if (operacion.equals("*")) {
 			resultado *= new Double(pantalla.getText());
-		}
+		}//Nuevos ifs para nuevas operaciones
+                else 
+                    if(operacion.equals("sen"))
+                    {
+                        resultado= Math.sin(Math.toRadians(new Double(pantalla.getText())));
+                    }else
+                        if(operacion.equals("tan"))
+                        {
+                            resultado=Math.tan(Math.toRadians(new Double(pantalla.getText())));
+                        }else
+                            if(operacion.equals("cos"))
+                            {
+                                resultado=Math.cos(Math.toRadians(new Double(pantalla.getText())));
+                            }else
+                                if(operacion.equals("Raíz cuad"))
+                                {
+                                    resultado=Math.sqrt(new Double(pantalla.getText()));
+                                }else
+                                    if(operacion.equals("^2"))
+                                    {
+                                        resultado=Math.pow(new Double(pantalla.getText()),(double) 2);
+                                    }
+                        
 
 		pantalla.setText("" + resultado);
 		operacion = "";
